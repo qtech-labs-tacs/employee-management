@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qtechlabs.employeemanagement.dto.EmployeeDTO;
-import com.qtechlabs.employeemanagement.service.EmployeeManagementServiceContractImplementation;
+import com.qtechlabs.employeemanagement.service.EmployeeService;
 
 
 @RestController
-public class EmployeeManagementAPIContractImplementation implements EmployeeManagementAPIContract {
+public class EmployeeController {
 
 	@Autowired
-	private EmployeeManagementServiceContractImplementation service;
+	private EmployeeService service;
 
 	// POST/CREATE/INSERT
 	@PostMapping("/api/v1/employee/")

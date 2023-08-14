@@ -8,13 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.qtechlabs.employeemanagement.model.Employee;
 
 @Repository
-public class EmployeeManagementRepositoryContractImplementation implements EmployeeManagementRepositoryContract {
+public class EmployeeRepositoryImplementation {
 
 	@Autowired
-	private EmployeeManagementRepository repository;
+	private EmployeeRepository repository;
 
 	
-	@Override
 	public boolean insertIntoEmployeeTable(Employee employee) {
 		repository.save(employee);
 		return true;
@@ -22,7 +21,6 @@ public class EmployeeManagementRepositoryContractImplementation implements Emplo
 	
 	
 
-	@Override
 	public Employee selectFromEmployeeTable(Long employeeId) {
 		Optional<Employee> employeeOptional = repository.findById(employeeId);
 		if (employeeOptional.isPresent()) {
@@ -35,13 +33,11 @@ public class EmployeeManagementRepositoryContractImplementation implements Emplo
 	
 	
 	
-	@Override
 	public Employee updateIntoEmployeeTable(Employee employee) {
 		Employee emp = repository.save(employee);
 		return emp;
 	}
 
-	@Override
 	public boolean deleteFromEmployeeTable(Long employeeId) {
 		repository.deleteById(employeeId);
 		return true;

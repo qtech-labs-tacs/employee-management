@@ -6,19 +6,18 @@ import org.springframework.stereotype.Service;
 
 import com.qtechlabs.employeemanagement.dto.EmployeeDTO;
 import com.qtechlabs.employeemanagement.model.Employee;
-import com.qtechlabs.employeemanagement.repository.EmployeeManagementRepositoryContractImplementation;
+import com.qtechlabs.employeemanagement.repository.EmployeeRepositoryImplementation;
 
 @Service
-public class EmployeeManagementServiceContractImplementation implements EmployeeManagementServiceContract{
+public class EmployeeService{
 
 	@Autowired
 	private ModelMapper modelMapper;
 
 	@Autowired
-	private EmployeeManagementRepositoryContractImplementation repository;
+	private EmployeeRepositoryImplementation repository;
 	
 	
-	@Override
 	public boolean createEmployee(EmployeeDTO employeeDTO) {
 		
 		Employee employee = modelMapper.map(employeeDTO, Employee.class);
@@ -27,7 +26,6 @@ public class EmployeeManagementServiceContractImplementation implements Employee
 	}
 
 	
-	@Override
 	public EmployeeDTO getEmployee(Long employeeId) {
 		Employee employee = repository.selectFromEmployeeTable(employeeId);
 		EmployeeDTO employeeDTO = modelMapper.map(employee, EmployeeDTO.class);
@@ -37,7 +35,6 @@ public class EmployeeManagementServiceContractImplementation implements Employee
 
 	
 	
-	@Override
 	public EmployeeDTO updateEmployee(Long employeeId, EmployeeDTO employeeDTO) {
 		
 		Employee employeeFromDatabase = repository.selectFromEmployeeTable(employeeId);
@@ -51,7 +48,6 @@ public class EmployeeManagementServiceContractImplementation implements Employee
 	
 	
 	
-	@Override
 	public boolean deleteEmployee(Long employeeId) {
 		boolean deleteFromEmployeeTable = repository.deleteFromEmployeeTable(employeeId);
 		return deleteFromEmployeeTable;
