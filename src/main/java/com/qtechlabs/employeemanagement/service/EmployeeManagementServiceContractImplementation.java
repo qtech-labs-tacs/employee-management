@@ -4,9 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qtechlabs.employeemanagement.dto.EmployeeDTO;
-import com.qtechlabs.employeemanagement.model.Employee;
+import com.qtechlabs.employeemanagement.contract.controller.EmployeeDTO;
+import com.qtechlabs.employeemanagement.contract.repository.Employee;
+import com.qtechlabs.employeemanagement.contract.service.EmployeeManagementServiceContract;
 import com.qtechlabs.employeemanagement.repository.EmployeeManagementRepositoryContractImplementation;
+
 
 @Service
 public class EmployeeManagementServiceContractImplementation implements EmployeeManagementServiceContract{

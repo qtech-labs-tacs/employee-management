@@ -5,7 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.qtechlabs.employeemanagement.model.Employee;
+import com.qtechlabs.employeemanagement.contract.repository.Employee;
+import com.qtechlabs.employeemanagement.contract.repository.EmployeeManagementRepositoryContract;
 
 @Repository
 public class EmployeeManagementRepositoryContractImplementation implements EmployeeManagementRepositoryContract {
