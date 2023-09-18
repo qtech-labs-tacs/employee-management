@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.qtechlabs.employeemanagement.dto.UserDTO;
+import com.qtechlabs.employeemanagement.model.User;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -21,7 +21,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 public class JwtTokenProvider {
 
 	public String generateToken(Authentication authentication) {
-		UserDTO user = (UserDTO) authentication.getPrincipal();
+		User user = (User) authentication.getPrincipal();
 		Date now = new Date(System.currentTimeMillis());
 
 		Date expiryDate = new Date(now.getTime() + SecurityConstants.EXPIRATION_TIME);

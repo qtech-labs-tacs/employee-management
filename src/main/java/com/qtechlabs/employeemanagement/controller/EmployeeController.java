@@ -16,7 +16,7 @@ import com.qtechlabs.employeemanagement.service.EmployeeManagementServiceContrac
 
 
 @RestController
-public class EmployeeManagementAPIContractImplementation implements EmployeeManagementAPIContract {
+public class EmployeeController implements EmployeeAPIContract {
 
 	@Autowired
 	private EmployeeManagementServiceContractImplementation service;

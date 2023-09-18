@@ -2,7 +2,7 @@ package com.qtechlabs.employeemanagement.repository;
 
 import com.qtechlabs.employeemanagement.model.Employee;
 
-public interface EmployeeManagementRepositoryContract {
+public interface EmployeeRepositoryContract {
 
 	public boolean insertIntoEmployeeTable(Employee employee);
 

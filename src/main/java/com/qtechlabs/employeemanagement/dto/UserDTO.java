@@ -1,27 +1,19 @@
 package com.qtechlabs.employeemanagement.dto;
 
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-public class UserDTO implements UserDetails {
+public class UserDTO implements Serializable{
 	
+	private static final long serialVersionUID = -4982668184925760055L;
+
 	private Long id;
 
 	@Email(message = "Username needs to be an email")
@@ -109,37 +101,5 @@ public class UserDTO implements UserDetails {
 		this.update_At = new Date();
 	}
 
-	/*
-	 * UserDetails interface methods
-	 */
-
-	@Override
-	@JsonIgnore
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	@JsonIgnore
-	public boolean isEnabled() {
-		return true;
-	}
+	
 }

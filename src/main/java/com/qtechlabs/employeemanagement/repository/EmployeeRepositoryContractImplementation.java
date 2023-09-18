@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.qtechlabs.employeemanagement.model.Employee;
 
 @Repository
-public class EmployeeManagementRepositoryContractImplementation implements EmployeeManagementRepositoryContract {
+public class EmployeeRepositoryContractImplementation implements EmployeeRepositoryContract {
 
 	@Autowired
-	private EmployeeManagementRepository repository;
+	private EmployeeRepository repository;
 
 	
 	@Override

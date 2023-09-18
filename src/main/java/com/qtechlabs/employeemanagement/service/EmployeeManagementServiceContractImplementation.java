@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.qtechlabs.employeemanagement.dto.EmployeeDTO;
 import com.qtechlabs.employeemanagement.model.Employee;
-import com.qtechlabs.employeemanagement.repository.EmployeeManagementRepositoryContractImplementation;
+import com.qtechlabs.employeemanagement.repository.EmployeeRepositoryContractImplementation;
 
 @Service
 public class EmployeeManagementServiceContractImplementation implements EmployeeManagementServiceContract{
@@ -15,7 +15,7 @@ public class EmployeeManagementServiceContractImplementation implements Employee
 	private ModelMapper modelMapper;
 
 	@Autowired
-	private EmployeeManagementRepositoryContractImplementation repository;
+	private EmployeeRepositoryContractImplementation repository;
 	
 	
 	@Override

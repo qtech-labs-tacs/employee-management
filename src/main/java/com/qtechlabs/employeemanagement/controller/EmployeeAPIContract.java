@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.qtechlabs.employeemanagement.dto.EmployeeDTO;
 
-public interface EmployeeManagementAPIContract {
+public interface EmployeeAPIContract {
 
 	
 	// POST/CREATE/INSERT

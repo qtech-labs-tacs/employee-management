@@ -19,14 +19,14 @@ import com.qtechlabs.employeemanagement.configuration.JwtTokenProvider;
 import com.qtechlabs.employeemanagement.configuration.SecurityConstants;
 import com.qtechlabs.employeemanagement.dto.JWTLoginSucessReponse;
 import com.qtechlabs.employeemanagement.dto.LoginRequest;
+import com.qtechlabs.employeemanagement.dto.UserDTO;
 import com.qtechlabs.employeemanagement.model.User;
 import com.qtechlabs.employeemanagement.service.MapValidationErrorService;
 import com.qtechlabs.employeemanagement.service.UserService;
 import com.qtechlabs.employeemanagement.validator.UserValidator;
 
-
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
@@ -44,35 +44,34 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
-
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        
-        if(errorMap != null) {
-        	return errorMap;
+
+        if (errorMap != null) {
+            return errorMap;
         }
 
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = SecurityConstants.TOKEN_PREFIX +  tokenProvider.generateToken(authentication);
+        String jwt = SecurityConstants.TOKEN_PREFIX + tokenProvider.generateToken(authentication);
 
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
+    public ResponseEntity<?> registerUser(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
         // Validate passwords match
-        userValidator.validate(user,result);
+        userValidator.validate(userDTO, result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null)return errorMap;
+        if (errorMap != null)
+            return errorMap;
 
-        User newUser = userService.saveUser(user);
+        User newUser = userService.saveUser(userDTO);
 
-        return  new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
 }
